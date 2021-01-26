@@ -1,0 +1,37 @@
+****************************Transeform****************************
+translate 포지션을 직접 수정하는 느낌
+eulerAngles 오일러 앵글 주의 변수 선언하여 대입시키는 방법으로 해야함
+rotation Quaternion 쿼터니온 위와 비슷
+Quaternion.Euler 로테이션 값
+Rotate 메서드를 사용하면 손쉽게 사용 가능
+localScale 크기 변경
+forward, up, right // 정규화 방향
+lookAt 특정 대상을 바라보게하는 함수
+rotateAround 타겟 주위를 선택한 방향 기준으로 돎
+
+
+*****************************rigidbody*****************************
+mass 질량
+drag 공기 저항
+angular drag 회전 저항
+is kinematic 물리엔진 영향 취소
+collision detection 기본 discrete 두번째 총알같이 빠른 물체에
+적용 해야함
+position transform position과 비슷함
+velocity 순간 속도 변경 물리엔진 영향 받음
+angularVelocity 회전 속도 물리엔진 영향 받음
+maxAngularVelocity 최대 회전속도 제한
+movePosition 이동 메서드 물리 엔진 영향 받지 않음
+MoveRotation 회전 메서드 물리 엔진 영향 받지 않음
+AddForce 이동 특정 방향으로 힘을 가함 가속이 됨
+AddTorque 회전 특정 방향으로 힘을 가함 가속이 됨
+AddExplosionForce 폭발력 세기, 폭발 위치, 폭발 반경
+******************************collider******************************
+Meterial 스프링처럼 튕기는 기능 매질
+is Trigger 방아쇠 충돌 감지만 하는 기능
+bounds transform.Position + Center 값, 사이즈의 반값
+bounds.extents 수정 불가 read only
+bounds.extents.x 
+
+Raycast 레이저를 쏜다
+Ray 레이저 구조체
