@@ -24,10 +24,6 @@ public class PlayerController : MonoBehaviour
         // 리지드바디의 속도에 newVelocity 할당
         PlayerRigidbody.velocity = newVelocity;
     }
-    private void Update()
-    {
-        
-    }
     public void Die()
     {
         gameObject.SetActive(false);
