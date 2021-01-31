@@ -16,13 +16,12 @@ public struct LevelData
 
 public class LevelController : MonoBehaviour
 {
-    [SerializeField] TextAsset levelData;
-    List<LevelData> levelDatas = new List<LevelData>();
+    [SerializeField] public TextAsset levelData;
+    public List<LevelData> levelDatas = new List<LevelData>();
     // Start is called before the first frame update
     void Start()
     {
         LoadData();
-        int a = 0;
     }
     
     void LoadData()

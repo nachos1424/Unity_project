@@ -8,22 +8,21 @@ public class PlayerController : MonoBehaviour
     Rigidbody myRigidbody;
     CapsuleCollider coll;
     Animation anim { get; set; }
-
     public float jumpPower = 0f;
     public float maxJumpPower = 500f;
-    float addJumpPower = 100f;
-
+    private float addJumpPower = 150f;
+    public float speed = 5f;
     // Start is called before the first frame update
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody>();
         coll = GetComponent<CapsuleCollider>();
         anim = GetComponent<Animation>();
-
         anim.Play("01_Idle");
+        speed = 5f;
     }
 
-    private void OnCollisionEnter(Collision collision)
+private void OnCollisionEnter(Collision collision)
     {
         // collision이 큐브이면
         if (collision.gameObject.tag == "Block")
@@ -35,6 +34,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
         if (Input.GetMouseButton(0))
         {
             jumpPower += addJumpPower * Time.deltaTime;

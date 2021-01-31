@@ -35,3 +35,15 @@ bounds.extents.x
 
 Raycast 레이저를 쏜다
 Ray 레이저 구조체
+**************************Mesh Renderer***************************
+Dynamic Occlusion 체크 되어있으면 화면 밖에 있는 때 그래픽이 그려지지 않는다
+lighting
+- cast shadows 그림자 on off shadowsOnly 그림자만 on tow sided 두 군데 그림자 생성
+receive shadows 체크시 다른 물체 그림자를 영향 받는다 
+motion vectors 블러 처리
+Light Probes 주변의 영향을 받겠다
+Lightmap Static 체크시 베이크 과정
+**************************Camera***************************
+clear flags
+- sky box 기본 하늘
+- solld color 
