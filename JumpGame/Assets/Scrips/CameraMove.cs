@@ -14,10 +14,9 @@ public class CameraMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float resultX = Mathf.Lerp(transform.position.x, target.transform.position.x, 10f * Time.deltaTime);
-        float resultY = Mathf.Lerp(transform.position.y, target.transform.position.y + 2, 10f * Time.deltaTime);
-        transform.position = new Vector3(resultX,
-           resultY, transform.position.z);
-        transform.LookAt(target.transform);
-    }
+        //float resultX = Mathf.Lerp(transform.position.x, target.transform.position.x, 10f * Time.deltaTime);
+        //float resultY = Mathf.Lerp(transform.position.y, target.transform.position.y + 1, 10f * Time.deltaTime);
+		transform.position = new Vector3(target.transform.position.x,
+           target.transform.position.y + 1, transform.position.z);
+	}
 }
