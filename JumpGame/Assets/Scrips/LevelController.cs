@@ -20,11 +20,12 @@ public class LevelController : MonoBehaviour
     public List<LevelData> levelDatas = new List<LevelData>();
     // 현재 레벨
     public int currLevel = 0;
-    float timer = 0f;
+    public float timer { get; set; }
 	// Start is called before the first frame update
     void Start()
 	{
         LoadData();
+        timer = 0f;
     }
     private void Update()
 	{

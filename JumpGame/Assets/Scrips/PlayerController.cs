@@ -9,10 +9,9 @@ public class PlayerController : MonoBehaviour
     CapsuleCollider coll;
     Animation anim;
     public float jumpPower = 300f;
-    //public float maxJumpPower = 500f;
-    //float addJumpPower = 150f;
     public float speed = 5f;
     int jumpCount;
+    float prevPosY;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
         anim.Play("01_Idle");
         speed = 5f;
         jumpCount = 0;
+        prevPosY = transform.position.y;
     }
 
 private void OnCollisionEnter(Collision collision)
@@ -29,7 +29,7 @@ private void OnCollisionEnter(Collision collision)
         // collision이 큐브이면
         if (collision.gameObject.tag == "Block")
         {
-            anim.CrossFade("12_walk", 0.2f);
+            anim.CrossFade("02_Move", 0.2f);
         }
         jumpCount = 0;
     }
@@ -37,35 +37,34 @@ private void OnCollisionEnter(Collision collision)
     // Update is called once per frame
     void Update()
     {
-
         transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
+        prevPosY = transform.position.y;
+        ChangeAnim();
+        Jump();
+    }
+		//점프 최고치에서 애니메이션 전환
+    private void ChangeAnim()
+    {
+        if (transform.position.y - prevPosY < 0)
+        {
+            if (Mathf.Abs(transform.position.y - prevPosY) < 0.0001f)
+            {
+                anim.CrossFade("02_Move", 0.2f);
+            }
+            else
+                anim.CrossFade("04_jumpdown", 0.2f);
+        }
+    }
+	// 점프
+	private void Jump()
+    {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             jumpCount++;
-        //    jumpPower += addJumpPower * Time.deltaTime;
-        //    jumpPower = Mathf.Clamp(jumpPower, 0f, maxJumpPower);
-        //
-        //    float scaleY = Mathf.Max(1f - (jumpPower / maxJumpPower), 0.4f);
-        //
-        //    coll.radius = scaleY;
-        //
-        //    transform.localScale = new Vector3(transform.localScale.x, scaleY, transform.localScale.z);
-        //}
-        //else if (Input.GetMouseButtonUp(0))
-        //{
+
             myRigidbody.AddForce(0f, jumpPower, 0f);
-         //   jumpPower = 0f;
-         //
-         //   coll.radius = 1f;
-         //   transform.localScale = new Vector3(1, 1, 1);
-         //
+
             anim.Play("03_jumpup");
-            //anim.CrossFade("03_jumpup", 0.5f);
-        }
-        Debug.Log("jumpCount" + jumpCount);
-        if (transform.position.y < -5f)
-        {
-            SceneManager.LoadScene(0);
         }
     }
 }
