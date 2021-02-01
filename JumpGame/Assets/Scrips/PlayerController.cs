@@ -38,7 +38,6 @@ private void OnCollisionEnter(Collision collision)
     void Update()
     {
         transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
-        prevPosY = transform.position.y;
         ChangeAnim();
         Jump();
     }
@@ -47,16 +46,17 @@ private void OnCollisionEnter(Collision collision)
     {
         if (transform.position.y - prevPosY < 0)
         {
-            if (Mathf.Abs(transform.position.y - prevPosY) < 0.0001f)
+            if (Mathf.Abs(transform.position.y - prevPosY) < 0.001f)
             {
                 anim.CrossFade("02_Move", 0.2f);
             }
             else
                 anim.CrossFade("04_jumpdown", 0.2f);
         }
+        prevPosY = transform.position.y;
     }
-	// 점프
-	private void Jump()
+    // 점프
+    private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
