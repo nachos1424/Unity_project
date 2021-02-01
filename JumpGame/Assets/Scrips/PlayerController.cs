@@ -40,6 +40,7 @@ private void OnCollisionEnter(Collision collision)
         transform.Translate(transform.forward * Time.deltaTime * speed, Space.World);
         ChangeAnim();
         Jump();
+        
     }
 		//점프 최고치에서 애니메이션 전환
     private void ChangeAnim()
@@ -48,7 +49,7 @@ private void OnCollisionEnter(Collision collision)
         {
             if (Mathf.Abs(transform.position.y - prevPosY) < 0.001f)
             {
-                anim.CrossFade("02_Move", 0.2f);
+                anim.CrossFade("02_Move", 0.1f);
             }
             else
                 anim.CrossFade("04_jumpdown", 0.2f);
@@ -61,10 +62,8 @@ private void OnCollisionEnter(Collision collision)
         if (Input.GetKeyDown(KeyCode.Space) && jumpCount < 2)
         {
             jumpCount++;
-
+            anim.CrossFade("03_jumpup", 0.1f);
             myRigidbody.AddForce(0f, jumpPower, 0f);
-
-            anim.Play("03_jumpup");
         }
     }
 }
