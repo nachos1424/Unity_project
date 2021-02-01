@@ -10,6 +10,12 @@ public class CubeSpawner : MonoBehaviour
     Vector3 startPosition;
     GameObject lastCube;
     GameObject player;
+    public int floorMin { private get; set; }
+    public int floorMax { private get; set; }
+    public int holeReMin { private get; set; }
+    public int holeReMax { private get; set; }
+    public int heightMin { private get; set; }
+    public int heightMax { private get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +30,21 @@ public class CubeSpawner : MonoBehaviour
     {
         if (player.transform.position.x + 10 > lastCube.transform.position.x)
         {
-            int lastPosX = (int)lastCube.transform.position.x;
+            int cubePosX = (int)lastCube.transform.position.x;
+            int floor = Random.Range(floorMin, floorMax);
+            int hole = Random.Range(holeReMin, holeReMax);
+            int height = Random.Range(heightMin, heightMax);
 
-            for(int i = 0; i < 10; i++)
+            if (cubePosX == 0)
             {
-                lastCube = Instantiate(prefabCube,
-                    new Vector3(lastPosX + i + 1, lastCube.transform.position.y, lastCube.transform.position.z),
-                    Quaternion.identity);
+                hole = 0;
             }
-        }
+            for (int i = 0; i < floor; i++)
+			{
+				lastCube = Instantiate(prefabCube,
+				new Vector3(cubePosX + i + 1 + hole, height, lastCube.transform.position.z),
+				Quaternion.identity);
+			}
+		}
     }
 }

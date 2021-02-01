@@ -18,13 +18,40 @@ public class LevelController : MonoBehaviour
 {
     [SerializeField] public TextAsset levelData;
     public List<LevelData> levelDatas = new List<LevelData>();
-    // Start is called before the first frame update
+    // 현재 레벨
+    public int currLevel = 0;
+    float timer = 0f;
+	// Start is called before the first frame update
     void Start()
-    {
+	{
         LoadData();
     }
-    
-    void LoadData()
+    private void Update()
+	{
+		timer += Time.deltaTime;
+		if (timer > levelDatas[0].time && timer <= levelDatas[1].time)
+		{
+			currLevel = 0;
+        }
+        else if (timer > levelDatas[1].time && timer <= levelDatas[2].time)
+        {
+            currLevel = 1;
+        }
+        else if (timer > levelDatas[2].time && timer <= levelDatas[3].time)
+        {
+            currLevel = 2;
+        }
+        else if (timer > levelDatas[3].time && timer <= levelDatas[4].time)
+        {
+            currLevel = 3;
+        }
+        else
+        {
+            currLevel = 4;
+        }
+        //Debug.Log("time" + timer);
+    }
+	void LoadData()
     {
         string text = levelData.text;
         string[] lines = text.Split('\n');
